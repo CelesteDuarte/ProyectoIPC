@@ -46,12 +46,12 @@ public class Reservacion extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			
 			public void windowOpened(java.awt.event.WindowEvent evt) {
-			diseño diseño=new diseño();
-			this.add( diseño, BorderLayout.SOUTH);
-			diseño.repaint();
+			diseno foto=new diseno();
+			this.add( foto, BorderLayout.SOUTH);
+			foto.repaint();
 			}
 
-			private void add(diseño diseño, String south) {
+			private void add(diseno foto, String south) {
 				// TODO Auto-generated method stub
 			}
 		});
@@ -177,5 +177,27 @@ public class Reservacion extends JFrame {
 		buttonSalir.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
 		buttonSalir.setBounds(316, 247, 116, 45);
 		contentPane.add(buttonSalir);
+		
+		JButton buttonMostrar = new JButton("Mostrar");
+		buttonMostrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				JOptionPane.showMessageDialog(null, Datos.MostrarDatos());
+			}
+		});
+		buttonMostrar.setBounds(42, 260, 89, 23);
+		contentPane.add(buttonMostrar);
+		
+		JButton buttonLimpiar = new JButton("Limpiar");
+		buttonLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			
+			txtNombre.setText("");
+			txtPais.setText("");
+			txtTelefono.setText("");
+			}
+		});
+		buttonLimpiar.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
+		buttonLimpiar.setBounds(178, 247, 116, 45);
+		contentPane.add(buttonLimpiar);
 	}
 }
