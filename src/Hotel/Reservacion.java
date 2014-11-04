@@ -1,31 +1,24 @@
 package Hotel;
-
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.*;
 
 import javax.swing.border.EmptyBorder;
 import javax.swing.*;
 
-import java.awt.Font;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 public class Reservacion extends JFrame {
 	protected static final String Pais = null;
 	protected static final int Telefono = 0;
 	protected static final String Nombre = null;
+	protected static final String Tipocama = null;
 	private JPanel contentPane;
 	private JTextField txtNombre;
 	private JTextField txtTelefono;
 	private JTextField txtPais;
+	private JTextField txtTipocama;
 
-	/**
-	 * Launch the application.
-	 */
+	// Launch the application.
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -39,15 +32,16 @@ public class Reservacion extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	//Create the frame.
+	
 	public Reservacion() {
+		initialize();
+		
 		addWindowListener(new WindowAdapter() {
 			
 			public void windowOpened(java.awt.event.WindowEvent evt) {
 			diseno foto=new diseno();
-			this.add( foto, BorderLayout.SOUTH);
+			this.add(foto, BorderLayout.SOUTH);
 			foto.repaint();
 			}
 
@@ -115,11 +109,6 @@ public class Reservacion extends JFrame {
 		txtPais.setBounds(113, 92, 129, 20);
 		contentPane.add(txtPais);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4"}));
-		comboBox.setBounds(181, 118, 61, 20);
-		contentPane.add(comboBox);
-		
 		JButton buttonReservar = new JButton("Reservar");
 		buttonReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -138,13 +127,13 @@ public class Reservacion extends JFrame {
 				}
 				
 				String Nombre,Pais;
-				String Telefono;
+				String Telefono, Tipocama;
 				Nombre=txtNombre.getText();
 				Telefono=txtTelefono.getText();
 				Pais=txtPais.getText();
+				Tipocama=txtTipocama.getText();
 				
-				
-				Clientes clientes=new Clientes(Nombre, Telefono, Pais);
+				Clientes clientes=new Clientes(Nombre, Telefono, Pais, Tipocama);
 				Datos.GuardarClientes(clientes);
 			}
 		});
@@ -155,14 +144,26 @@ public class Reservacion extends JFrame {
 		JButton buttonPaquetes = new JButton("Paquetes");
 		buttonPaquetes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				// Instancias el nuevo frame
+				Paquetes v3 = new Paquetes();
+				// lo haces visible
+				v3.setVisible(true);
 			}
+			
 		});
 		buttonPaquetes.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
 		buttonPaquetes.setBounds(178, 191, 116, 45);
 		contentPane.add(buttonPaquetes);
 		
 		JButton buttonRestaurantes = new JButton("Restaurantes");
+		buttonRestaurantes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// Instancias el nuevo frame
+				Restaurantes v4 = new Restaurantes();
+				// lo haces visible
+				v4.setVisible(true);
+			}
+		});
 		buttonRestaurantes.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
 		buttonRestaurantes.setBounds(316, 191, 116, 45);
 		contentPane.add(buttonRestaurantes);
@@ -199,5 +200,13 @@ public class Reservacion extends JFrame {
 		buttonLimpiar.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
 		buttonLimpiar.setBounds(178, 247, 116, 45);
 		contentPane.add(buttonLimpiar);
+		
+		txtTipocama = new JTextField();
+		txtTipocama.setBounds(156, 119, 86, 20);
+		contentPane.add(txtTipocama);
+		txtTipocama.setColumns(10);
+	}
+	private void initialize(){
+		
 	}
 }
